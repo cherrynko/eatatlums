@@ -1,14 +1,27 @@
 // import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+
 import Home from './screens/Home';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Login from './screens/Login';
+import Signup from './screens/Signup';
+
 
 function App() {
   return (
-    <>    
-    {/* <div>hello world</div> */}
-    <div><Home/></div>
-    </>
+    <Router>
+      <div>
+        <Routes>
+          <Route exact path ="/" element = {<Home/>}/>
+          <Route exact path ="/login" element = {<Login/>}/>
+          <Route exact path ="/signup" element = {<Signup/>}/>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
