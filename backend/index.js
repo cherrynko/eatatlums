@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 4000
+const port = 3000
 const m_db = require("./mydb")
 
 m_db();
