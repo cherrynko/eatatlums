@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function Signup() {
-  // const BASE_URL = 'http://localhost:3001';
+  const BASE_URL = 'http://localhost:3001';
   const [userData, setUserData] = useState({
     id: '',
     name: '',
@@ -57,7 +57,7 @@ export default function Signup() {
         const res = await axios.post(`${BASE_URL}/api/createuser`, userData);
         console.log(res.data);
         setIsSignedUp(true);
-        navigate(`/login?signedup`);      
+        navigate(`/login?signedup=true`); 
       } catch (error) {
         console.error(error);
       }
