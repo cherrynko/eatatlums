@@ -2,7 +2,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 export default function Signup() {
+  // const BASE_URL = 'http://localhost:3001';
   const [userData, setUserData] = useState({
     id: '',
     name: '',
@@ -11,7 +13,7 @@ export default function Signup() {
     password: '',
   });
   const [errors, setErrors] = useState({});
-  // const [signupSuccess, setSignupSuccess] = useState(false);
+  const [isSignedUp, setIsSignedUp] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -52,9 +54,10 @@ export default function Signup() {
     if (Object.keys(errors).length === 0) {
       // Submit form data to server
       try {
-        const res = await axios.post('/api/createuser', userData);
+        const res = await axios.post(`${BASE_URL}/api/createuser`, userData);
         console.log(res.data);
-        navigate("/login", { state: { isSignedUp: true } });
+        setIsSignedUp(true);
+        navigate(`/login?signedup`);      
       } catch (error) {
         console.error(error);
       }

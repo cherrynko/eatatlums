@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
-function Login({ isSignedUp }) {
+
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const isSignedUp = queryParams.get('signedup');
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,7 +18,7 @@ function Login({ isSignedUp }) {
 
   return (
     <div className="container">
-      {isSignedUp && <p>Sign up successful! You may now log in.</p>}
+      {isSignedUp != undefined && <p>Sign up successful! You may now log in.</p>}
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
