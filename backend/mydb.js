@@ -10,7 +10,7 @@ const m_db = async() => {
         else
         {
             console.log("executed");
-            const fetched_data = mongoose.connection.db.collection("user")
+            const fetched_data = mongoose.connection.db.collection("users")
             fetched_data.find({}).toArray(function(err, data){
                 if (err) console.log("error.")
                 else console.log(data);
