@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -21,26 +21,22 @@ function Login() {
     password: '',
   });
 
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setUserData((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-  // };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
+    try 
+    {
       console.log(userData.id, userData.password);
-        const res = await axios.post(`${BASE_URL}/api/loginuser`, userData);
+      const res = await axios.post(`${BASE_URL}/api/loginuser`, userData);
+
       console.log(res.data);
-      if (res.ok) {
-        navigate('/');
-      } else {
-        setError('Invalid email or password');
-      }
-    } catch (error) {
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('RollNum', res.data.id);
+      localStorage.setItem('Name', res.data.name);
+
+
+      navigate('/');
+    } 
+     catch (error) {
       setError('Something went wrong');
       console.log(error);
     }
@@ -109,6 +105,7 @@ function Login() {
 
 return (
   <form onSubmit={handleSubmit}>
+    {isSignedUp && <p>Sign up successful! You may now log in.</p>}
     <div className="mb-3">
       <label htmlFor="email" className="form-label">id</label>
       <input type="text" className="form-control" id="ud" name="id" onChange={handleChange} value={userData.id} />

@@ -1,5 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import { useEffect, useState } from 'react';
+// const [userData, setUserData] = useState({});
+
+
+// useEffect(() => {
+//   const token = localStorage.getItem('token');
+
+//   if (token) {
+//     const decodedToken = jwt_decode(token);
+//     setUserData(decodedToken);
+//   }
+// }, []);
+
 
 function Navbar() {
   return (

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function Signup() {
-  const BASE_URL = 'http://localhost:3001';
+  const BASE_URL = 'http://0.0.0.0:3001';
   const [userData, setUserData] = useState({
     id: '',
     name: '',

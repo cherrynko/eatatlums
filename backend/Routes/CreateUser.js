@@ -42,7 +42,7 @@ router.post("/createuser", body('email').isEmail(), body('password', 'must be mi
 
 router.post("/loginuser", async(req, result)=> {
     let id = req.body.id;
-    console.log(id);
+    // console.log(id);
     try 
     { 
         console.log(req.body)
@@ -61,7 +61,7 @@ router.post("/loginuser", async(req, result)=> {
 
     } 
     catch (error) {
-        console.log("error with user create.", error)
+        console.log("error with user login.", error)
         // console.log(req.body.id);
         result.json({success:false});
     }
