@@ -68,3 +68,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+-a 
+for running frontend:
+
+- npm install react-scripts --save
+- cd backend, install nodemon, install mongoose@6.10.0, thunder client extension
+- npx nodemon ./index.js
+
+
+
+
+for deployment : (notes for later)
+
+
+- change localhost base-url in js files in screens
