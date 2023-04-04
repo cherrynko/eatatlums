@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 function Navbar() {
 
   const isLoggedIn = !!localStorage.getItem('token');
+  const username = localStorage.getItem('Name');
 
   return (
     <div>
@@ -31,14 +32,11 @@ function Navbar() {
         <li className="nav-item">
           <Link className="nav-link" aria-current="page" to="/">Home</Link>
         </li>
-        {isLoggedIn ? (
+
+        {!isLoggedIn && (
           <li className="nav-item">
-            <Link className="nav-link" to="/profile">Profile</Link>
-          </li>
-        ) : (
-          <li className="nav-item">
-            <Link className="nav-link" to="/login">Login</Link>
-          </li>
+          <Link className="nav-link" to="/login">Login</Link>
+        </li>
         )}
 
         {!isLoggedIn && (
@@ -46,6 +44,14 @@ function Navbar() {
           <Link className="nav-link" to="/signup">Sign up</Link>
         </li>
         )}
+
+        {isLoggedIn && (
+          <li className="Profile">
+          <Link className="Profile" to="/profile">Hey, {username}</Link>
+        </li>
+        )}
+
+        
           
 
         <li className="nav-item dropdown">
