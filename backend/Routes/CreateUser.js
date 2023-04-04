@@ -83,19 +83,21 @@ router.post("/loginuser", async(req, result)=> {
             return result.status(400).json({errors: "No matching id found. Re-enter or try signing up."})
         }
 
-        console.log(req.body.password,user.password )
+        // console.log(req.body.password,user.password )
         if (!(req.body.password === user.password))
         {
             return result.status(400).json({errors: "Incorrect Password."})
         }
+        
+        console.log(req.body, user, "hi")
 
-        result.json({success:true});
+        return result.json({success:true, body:user});
 
     } 
     catch (error) {
         console.log("error with user login.", error)
         // console.log(req.body.id);
-        result.json({success:false});
+        return result.json({success:false});
     }
 
 })

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 // import { useEffect, useState } from 'react';
 // const [userData, setUserData] = useState({});
 
@@ -14,10 +15,15 @@ import { Link } from 'react-router-dom';
 // }, []);
 
 
-function Navbar() {
+const HandleLogout = () => {
+  localStorage.removeItem('token');
 
+};
+
+function Navbar() {
   const isLoggedIn = !!localStorage.getItem('token');
   const username = localStorage.getItem('Name');
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -51,6 +57,12 @@ function Navbar() {
         </li>
         )}
 
+        {isLoggedIn && (
+          <li className="log-out">
+            <button onClick={HandleLogout}>Logout</button>
+            
+        </li>
+        )}
         
           
 

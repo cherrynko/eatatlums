@@ -23,16 +23,16 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      console.log(userData.id, userData.password);
-      const res = await axios.post(`${BASE_URL}/api/loginuser`, userData);
+    try 
+    {
+      // console.log(userData.id, userData.password);
+      let res = await axios.post(`${BASE_URL}/api/loginuser`, userData);
+      // res = res.json()
+// 
+      // res.body.name
 
-      console.log(res.data.token, res.data.name, "hiii");
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('RollNum', res.data.id);
-      localStorage.setItem('Name', res.data.name);
-
-
+      console.log(res.data.body.name, "hiiiii");
+      localStorage.setItem('token', res.data.body);
       navigate('/');
     }
     catch (error) {
