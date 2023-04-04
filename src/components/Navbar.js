@@ -16,11 +16,15 @@ function Navbar() {
   const isLoggedIn = !!localStorage.getItem('token');
   const navigate = useNavigate();
 
+  let firstname = null
   // setUser(localStorage.getItem('token'));
-
-  let token = JSON.parse(localStorage.getItem('token')); 
-  let firstname = token.name.split(" ")[0];
-  console.log(firstname, "hiii23");
+  if (isLoggedIn)
+  {
+     let token = JSON.parse(localStorage.getItem('token')); 
+    let firstname = token.name.split(" ")[0];
+    console.log(firstname, "hiii23");
+  }
+ 
 
   return (
     <div>
@@ -64,8 +68,7 @@ function Navbar() {
 
         {isLoggedIn && (
           <li className="log-out">
-            <button onClick={HandleLogout}>Logout</button>
-
+          <Link to="/" onClick={HandleLogout}>Logout</Link>
         </li>
         )}
         
