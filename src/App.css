@@ -32,10 +32,11 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
-} 
+}
 
 .login {
   display: flex;
@@ -82,6 +83,3 @@ button {
 button:hover {
   background-color: #357f2e;
 }
-
-
- 

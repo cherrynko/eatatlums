@@ -23,8 +23,7 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try 
-    {
+    try {
       console.log(userData.id, userData.password);
       const res = await axios.post(`${BASE_URL}/api/loginuser`, userData);
 
@@ -35,8 +34,8 @@ function Login() {
 
 
       navigate('/');
-    } 
-     catch (error) {
+    }
+    catch (error) {
       setError('Something went wrong');
       console.log(error);
     }
@@ -49,74 +48,74 @@ function Login() {
       [name]: value
     }));
   }
-// try {
+  // try {
   // const res = await axios.post(`${BASE_URL}/api/createuser`, userData);
-//   console.log(res.data);
-//   setIsSignedUp(true);
-//   navigate(`/login?signedup=true`); 
-// } catch (error) {
-//   console.error(error);
-// }
-//   return (
-//     <div className="container">
-//       {isSignedUp && <p>Sign up successful! You may now log in.</p>}
-//       <h2>Login</h2>
-//       <form onSubmit={handleSubmit}>
-//         <div className="mb-3">
-//           <label htmlFor="id" className="form-label">
-//             Roll Number
-//           </label>
-//           <input
-//             type="text"
-//             className="form-control"
-//             id="id"
-//             onChange={handleChange}
-//             value={userData.id}
-//           />
-//         </div>
-//         <div className="mb-3">
-//           <label htmlFor="password" className="form-label">
-//             Password
-//           </label>
-//           <input
-//             type="password"
-//             className="form-control"
-//             id="password"
-//             onChange={handleChange}            
-//             value={userData.password}
+  //   console.log(res.data);
+  //   setIsSignedUp(true);
+  //   navigate(`/login?signedup=true`); 
+  // } catch (error) {
+  //   console.error(error);
+  // }
+  //   return (
+  //     <div className="container">
+  //       {isSignedUp && <p>Sign up successful! You may now log in.</p>}
+  //       <h2>Login</h2>
+  //       <form onSubmit={handleSubmit}>
+  //         <div className="mb-3">
+  //           <label htmlFor="id" className="form-label">
+  //             Roll Number
+  //           </label>
+  //           <input
+  //             type="text"
+  //             className="form-control"
+  //             id="id"
+  //             onChange={handleChange}
+  //             value={userData.id}
+  //           />
+  //         </div>
+  //         <div className="mb-3">
+  //           <label htmlFor="password" className="form-label">
+  //             Password
+  //           </label>
+  //           <input
+  //             type="password"
+  //             className="form-control"
+  //             id="password"
+  //             onChange={handleChange}            
+  //             value={userData.password}
 
-//           />
-//         </div>
-//         <button type="submit" className="btn btn-primary">
-//           Login
-//         </button>
-//       </form>
-//       <p>
-//         Don't have an account?{" "}
-//         <Link to="/signup">
-//           <button type="button" className="btn btn-link">
-//             Sign up
-//           </button>
-//         </Link>
-//       </p>
-//     </div>
-//   );
-// }
+  //           />
+  //         </div>
+  //         <button type="submit" className="btn btn-primary">
+  //           Login
+  //         </button>
+  //       </form>
+  //       <p>
+  //         Don't have an account?{" "}
+  //         <Link to="/signup">
+  //           <button type="button" className="btn btn-link">
+  //             Sign up
+  //           </button>
+  //         </Link>
+  //       </p>
+  //     </div>
+  //   );
+  // }
 
-return (
-  <form onSubmit={handleSubmit}>
-    {isSignedUp && <p>Sign up successful! You may now log in.</p>}
-    <div className="mb-3">
-      <label htmlFor="email" className="form-label">id</label>
-      <input type="text" className="form-control" id="ud" name="id" onChange={handleChange} value={userData.id} />
-    </div>
-    <div className="mb-3">
-      <label htmlFor="password" className="form-label">Password</label>
-      <input type="password" className="form-control" id="password" name="password" onChange={handleChange} value={userData.password} />
-    </div>
-    <button type="submit" className="btn btn-primary">Submit</button>
-  </form>
-);
+  return (
+    <form onSubmit={handleSubmit}>
+      {isSignedUp && <p>Sign up successful! You may now log in.</p>}
+      <div className="mb-3">
+        <label htmlFor="email" className="form-label">id</label>
+        <input type="text" className="form-control" id="ud" name="id" onChange={handleChange} value={userData.id} />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="password" className="form-label">Password</label>
+        <input type="password" className="form-control" id="password" name="password" onChange={handleChange} value={userData.password} />
+      </div>
+      <button type="submit" className="btn btn-primary">Submit</button>
+    </form>
+  );
 }
 
 export default Login;
