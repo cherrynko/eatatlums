@@ -9,8 +9,47 @@ router.post("/createuser", body('email').isEmail(), body('password', 'must be mi
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+        console.log(result);
       return result.status(400).json({ errors: errors.array() });
     }
+    // console.log("in backend");
+    let empty = []
+    // check if user already exists
+    let id = req.body.id;
+    const existingUser = await User.findOne({id});
+    if (existingUser) {
+        // console.log(result);
+
+      return result.status(400).send('User already exists');
+    }
+
+    // if(!req.body.id)
+    // {
+    //     empty.push('id');
+    // }
+    // if(!req.body.name)
+    // {
+    //     empty.push('name');
+    // }
+    // if(!req.body.contact)
+    // {
+    //     empty.push('contact');
+    // }
+    // if(!req.body.email)
+    // {
+    //     empty.push('email');
+    // }
+    // if(!req.body.password)
+    // {
+    //     empty.push('password');
+    // }
+
+    // if (empty.length > 0)
+    // {
+    //     return result.status(401).json({error: "Please fill empty fields.", empty});
+
+    // }
+
 
     try {
         console.log(req.body)
@@ -20,14 +59,6 @@ router.post("/createuser", body('email').isEmail(), body('password', 'must be mi
             contact: Number(req.body.contact),
             email:req.body.email,
             password:req.body.password,
-
-            // {   req must go in like this
-            //     "id":24100207,
-            //     "name":"Eesha Ahsen",
-            //     "contact":"0324723112",
-            //     "email":"eeshaahsan80@gmail.com",
-            //     "password":"hihihihi"
-            // }
             
         })
     result.json({success:true});

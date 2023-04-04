@@ -1,153 +1,119 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import './Signup.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
+
 export default function Signup() {
   const BASE_URL = 'http://0.0.0.0:3001';
-  const [userData, setUserData] = useState({
-    id: '',
-    name: '',
-    contact: '',
-    email: '',
-    password: '',
-  });
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+  const [contact, setContact] = useState('');
   const [errors, setErrors] = useState({});
-  const [isSignedUp, setIsSignedUp] = useState(false);
+
   const navigate = useNavigate();
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setUserData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event) =>  {
     event.preventDefault();
 
-    // Validate input fields
+    // Perform validation
     const errors = {};
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const contactRegex = /^[0-9]{10}$/; // Matches 10 digits
-    const idRegex = /^[0-9]+$/; // Matches only digits
-    if (!userData.name) {
+    if (!name) {
       errors.name = 'Name is required';
     }
-    if (!userData.email) {
+    if (!email) {
       errors.email = 'Email is required';
-    } else if (!emailRegex.test(userData.email)) {
-      errors.email = 'Invalid email address';
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.email = 'Email is invalid';
     }
-    if (!userData.contact) {
-      errors.contact = 'Contact number is required';
-    } else if (!contactRegex.test(userData.contact)) {
-      errors.contact = 'Invalid contact number';
-    }
-    if (!userData.id) {
+    if (!id) {
       errors.id = 'ID is required';
-    } else if (!idRegex.test(userData.id)) {
-      errors.id = 'Invalid ID';
+    }
+    if (!contact) {
+      errors.contact = 'Contact is required';
+    } else if (!/^[0-9]{11}$/.test(contact)) {
+      errors.contact = 'Contact number is invalid';
     }
 
+    // Update error state and submit form if there are no errors
     if (Object.keys(errors).length === 0) {
-      // Submit form data to server
-      try {
+      setErrors({});
+      // Submit form
+      try 
+      {
+        let userData = {
+          name,
+          email,
+          id,
+          contact,
+          password
+        }
         const res = await axios.post(`${BASE_URL}/api/createuser`, userData);
-        console.log(res.data);
-        setIsSignedUp(true);
+        // console.log(res.data);
+        // setIsSignedUp(true);
         navigate(`/login?signedup=true`); 
-      } catch (error) {
-        console.error(error);
+      } 
+      catch (error)
+      {
+        console.log(error.response.status); //rmbr
+        if (error.response.status === 400)
+        {
+          const message = await error.response.data;
+          errors.submit = message;
+          console.log(errors.submit);
+          setErrors(errors); //user already exists
+        }
+        else 
+        {
+          // generic error handling
+          setErrors({submit:'An error occurred. Please try again later.'});
+        }
       }
     } else {
-      // Display validation errors
       setErrors(errors);
     }
-  };
+  }
+
+  function handleFocus(event) {
+    const inputName = event.target.name;
+    setErrors(prevErrors => {
+      return { ...prevErrors, [inputName]: undefined };
+    });
+  }
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="id" className="form-label">
-            ID
-          </label>
-          <input
-            type="text"
-            className={`form-control ${errors.id ? 'is-invalid' : ''}`}
-            id="id"
-            name="id"
-            value={userData.id}
-            onChange={handleChange}
-          />
-          {errors.id && <div className="invalid-feedback">{errors.id}</div>}
-        </div>
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            Name
-          </label>
-          <input
-            type="text"
-            className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-            id="name"
-            name="name"
-            value={userData.name}
-            onChange={handleChange}
-          />
-          {errors.name && <div className="invalid-feedback">{errors.name}</div>}
-        </div>
-        <div className="mb-3">
-          <label htmlFor="contact" className="form-label">
-            Contact Number
-          </label>
-          <input
-            type="text"
-            className={`form-control ${errors.contact ? 'is-invalid' : ''}`}
-            id="contact"
-            name="contact"
-            value={userData.contact}
-            onChange={handleChange}
-          />
-          {errors.contact && <div className="invalid-feedback">{errors.contact}</div>}
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            email
-          </label>
-          <input
-            type="text"
-            className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-            id="email"
-            name="email"
-            value={userData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <div className="invalid-feedback">{errors.email}</div>}
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            password
-          </label>
-          <input
-            type="text"
-            className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-            id="password"
-            name="password"
-            value={userData.password}
-            onChange={handleChange}
-          />
-          {errors.password && <div className="invalid-feedback">{errors.password}</div>}
-        </div>
-
-        <button type="submit" className="btn btn-primary">
-              Sign up
-        </button>
-
-
-      </form>
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" name="name" value={name} onChange={e => setName(e.target.value)} onFocus={handleFocus} />
+        {errors.name && <div className="error">{errors.name}</div>}
       </div>
-  )}
+      <div className="form-group">
+        <label htmlFor="email">Email:</label>
+        <input type="email" id="email" name="email" value={email} onChange={e => setEmail(e.target.value)} onFocus={handleFocus} />
+        {errors.email && <div className="error">{errors.email}</div>}
+      </div>
+      <div className="form-group">
+        <label htmlFor="id">ID:</label>
+        <input type="text" id="id" name="id" value={id} onChange={e => setId(e.target.value)} onFocus={handleFocus} />
+        {errors.id && <div className="error">{errors.id}</div>}
+      </div>
+      <div className="form-group">
+        <label htmlFor="contact">Contact:</label>
+        <input type="tel" id="contact" name="contact" value={contact} onChange={e => setContact(e.target.value)} onFocus={handleFocus} />
+        {errors.contact && <div className="error">{errors.contact}</div>}
+      </div>
+      <div className="form-group">
+        <label htmlFor="password">Password:</label>
+        <input type="tel" id="password" name="password" value={password} onChange={e => setPassword(e.target.value)} onFocus={handleFocus} />
+      </div>
+      <button type="submit">Sign up</button>
+      {errors.submit && <div className="error">{errors.submit}</div>}
+    </form>
+  );
+}
+
