@@ -76,14 +76,15 @@ router.post("/loginuser", async(req, result)=> {
     // console.log(id);
     try 
     { 
-        console.log(req.body)
+        // console.log(req.body)
         let user = await User.findOne({id})//just to test
         if (!user)
         {
             return result.status(400).json({errors: "No matching id found. Re-enter or try signing up."})
         }
 
-        if (!req.body.password === user.password)
+        console.log(req.body.password,user.password )
+        if (!(req.body.password === user.password))
         {
             return result.status(400).json({errors: "Incorrect Password."})
         }

@@ -28,7 +28,7 @@ function Login() {
       console.log(userData.id, userData.password);
       const res = await axios.post(`${BASE_URL}/api/loginuser`, userData);
 
-      console.log(res.data);
+      console.log(res.data.token, res.data.name, "hiii");
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('RollNum', res.data.id);
       localStorage.setItem('Name', res.data.name);
