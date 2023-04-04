@@ -26,8 +26,9 @@ function Login() {
     try 
     {
       let res = await axios.post(`${BASE_URL}/api/loginuser`, userData);
-      console.log(res.data.body.name, "hiiiii");
-      localStorage.setItem('token', res.data.body);
+      console.log(JSON.stringify(res.data.body));
+
+      localStorage.setItem('token', JSON.stringify(res.data.body));
       navigate('/');
     }
     catch (error) {

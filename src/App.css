@@ -83,3 +83,9 @@ button {
 button:hover {
   background-color: #357f2e;
 }
+
+.navbar-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

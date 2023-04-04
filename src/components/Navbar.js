@@ -1,18 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // import { Navigate } from 'react-router-dom';
-// import { useEffect, useState } from 'react';
-// const [userData, setUserData] = useState({});
+import { useState } from 'react';
+import "./Navbar.css"
 
-
-// useEffect(() => {
-//   const token = localStorage.getItem('token');
-
-//   if (token) {
-//     const decodedToken = jwt_decode(token);
-//     setUserData(decodedToken);
-//   }
-// }, []);
 
 
 const HandleLogout = () => {
@@ -21,9 +12,15 @@ const HandleLogout = () => {
 };
 
 function Navbar() {
+  const [user, setUser] = useState('');
   const isLoggedIn = !!localStorage.getItem('token');
-  const username = localStorage.getItem('Name');
   const navigate = useNavigate();
+
+  // setUser(localStorage.getItem('token'));
+
+  let token = JSON.parse(localStorage.getItem('token')); 
+  let firstname = token.name.split(" ")[0];
+  console.log(firstname, "hiii23");
 
   return (
     <div>
@@ -51,16 +48,24 @@ function Navbar() {
         </li>
         )}
 
-        {isLoggedIn && (
+        {/* {isLoggedIn && (
           <li className="Profile">
-          <Link className="Profile" to="/profile">Hey, {username}</Link>
+          <Link className="Profile" to="/profile">Hey, {firstname}</Link>
         </li>
+        )} */}
+
+      <ul className="navbar-nav">
+        {isLoggedIn && (
+          <li className="navbar-nav" style={{ marginLeft: 'auto' }}>
+            <Link className="nav-link" to="/profile">Hey, {firstname}</Link>
+          </li>
         )}
+        </ul>
 
         {isLoggedIn && (
           <li className="log-out">
             <button onClick={HandleLogout}>Logout</button>
-            
+
         </li>
         )}
         
