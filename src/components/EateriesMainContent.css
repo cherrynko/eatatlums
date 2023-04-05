@@ -1,0 +1,73 @@
+body {
+    background-image: url('../../public/old-black-background-grunge-texture-dark-wallpaper-blackboard-chalkboard-room-wall.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.restaurant-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.restaurant-option-1,
+.restaurant-option-2,
+.restaurant-option-3,
+.restaurant-option-4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    border-radius: 10px;
+    border: 5px solid #e6cb45;
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+}
+
+.restaurant-option-1:hover,
+.restaurant-option-2:hover,
+.restaurant-option-3:hover,
+.restaurant-option-4:hover {
+    border-color: #FF0000;
+}
+
+.restaurant-option-1 {
+    background-image: url('../../public/download.jpeg');
+
+}
+
+.restaurant-option-2 {
+    background-image: url('../../public/gettyimages-1295387240-612x612.jpg');
+}
+
+.restaurant-option-3 {
+    background-image: url('../../public/images.jpeg');
+}
+
+.restaurant-option-4 {
+    background-image: url('../../public/photo-1600891964599-f61ba0e24092.jpeg');
+}
+
+.content {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 50px;
+    font: optional;
+    padding-top: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    /* min-height: 40vh; */
+}
+
+.col {
+    width: 50%;
+    margin: 20px;
+}

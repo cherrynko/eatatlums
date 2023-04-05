@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Login from './screens/Login';
 import Signup from './screens/Signup';
+import Contact from './screens/Contact';
 
 
 function App() {
@@ -16,9 +17,10 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route exact path ="/" element = {<Home/>}/>
-          <Route exact path ="/login" element = {<Login/>}/>
-          <Route exact path ="/signup" element = {<Signup/>}/>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/contact" element={<Contact />} />
         </Routes>
       </div>
     </Router>
