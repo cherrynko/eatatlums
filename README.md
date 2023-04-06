@@ -77,7 +77,9 @@ for running frontend:
 - cd backend, install nodemon, install mongoose@6.10.0, thunder client extension
 - npx nodemon ./index.js
 
-
+- commands:
+- npm install -g nodemon
+- npm i mongoose@6.10.0
 
 
 for deployment : (notes for later)
