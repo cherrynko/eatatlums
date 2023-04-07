@@ -1,10 +1,6 @@
 import React from 'react';
 import './EateriesMainContent.css';
-// import PDCimg from './gettyimages-1295387240-612x612.jpg'
-// import CCLimg from './download.jpeg'
-// import FCimg from './photo-1600891964599-f61ba0e24092.jpeg';
-// import GOimg from './photo-1600891964599-f61ba0e24092.jpeg';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function EateriesMainContent() {
 
@@ -15,11 +11,13 @@ function EateriesMainContent() {
         <main>
             <div className='restaurant-container'>
                 <div className='row'>
+                    {/* <Link to="/pdchome"> */}
                     <div className='col restaurant-option-1'>
                         <a>
                             <h1 className='content'>PDC</h1>
                         </a>
                     </div>
+                    {/* </Link> */}
                     <div className='col restaurant-option-2'>
                         <h1 className='content'>Cupcake Lounge</h1>
 

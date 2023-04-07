@@ -10,6 +10,7 @@ import {
 import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Contact from './screens/Contact';
+import PdcHome from './screens/PdcHome';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/contact" element={<Contact />} />
+          <Route exact path="/pdchome" element={<PdcHome />} />
         </Routes>
       </div>
     </Router>
