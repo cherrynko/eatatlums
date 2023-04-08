@@ -23,34 +23,6 @@ router.post("/createuser", body('email').isEmail(), body('password', 'must be mi
       return result.status(400).send('User already exists');
     }
 
-    // if(!req.body.id)
-    // {
-    //     empty.push('id');
-    // }
-    // if(!req.body.name)
-    // {
-    //     empty.push('name');
-    // }
-    // if(!req.body.contact)
-    // {
-    //     empty.push('contact');
-    // }
-    // if(!req.body.email)
-    // {
-    //     empty.push('email');
-    // }
-    // if(!req.body.password)
-    // {
-    //     empty.push('password');
-    // }
-
-    // if (empty.length > 0)
-    // {
-    //     return result.status(401).json({error: "Please fill empty fields.", empty});
-
-    // }
-
-
     try {
         console.log(req.body)
         await User.create({ //just to test
@@ -80,13 +52,13 @@ router.post("/loginuser", async(req, result)=> {
         let user = await User.findOne({id})//just to test
         if (!user)
         {
-            return result.status(400).json({errors: "No matching id found. Re-enter or try signing up."})
+            return result.status(400).send("No matching id found. Re-enter or try signing up.");
         }
 
         // console.log(req.body.password,user.password)
         if (!(req.body.password === user.password))
         {
-            return result.status(400).json({errors: "Incorrect Password."})
+            return result.status(400).send("Incorrect Password.");
         }
         
         console.log(req.body, user, "hi")
