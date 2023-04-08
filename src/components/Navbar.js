@@ -27,9 +27,6 @@ function Navbar() {
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem('token')); 
   if (token) {
-      // setIsLoggedIn(true);
-      // extract user name from token and set it to userName state
-      // for example, if token contains {"username": "John"}, you can use
       let name = token.name.split(" ")[0];
       setname(name);
     }
