@@ -1,6 +1,7 @@
 import React from 'react'
 import EachEateryNavbar from "../components/EachEateryNavbar";
 import AddReview from '../components/AddReview';
+import DisplayReviews from '../components/UserReviews';
 
 
 export default function Reviews() {
@@ -21,6 +22,8 @@ export default function Reviews() {
       </div>
 
       <AddReview />
+      <DisplayReviews />
+
 
 
 
