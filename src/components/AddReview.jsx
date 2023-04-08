@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+
+function getSubstring(str, start, end) {
+    const startIndex = str.indexOf(start) + start.length;
+    const endIndex = str.indexOf(end, startIndex);
+    return str.substring(startIndex, endIndex);
+}
+
 
 function AddReview() {
+    const location = useLocation();
+    const path = location.pathname;
+    // console.log("Path:", path);
+    const eateryName = getSubstring(path, '/', 'reviews')
+    // console.log("Eatery name:", eateryName);
     const [showAddReview, setShowReviewForm] = useState(false);
     // const [reviewText, setReviewText] = useState('');
     // const [starRating, setStarRating] = useState(0);
@@ -14,7 +27,8 @@ function AddReview() {
         id: Number,
         review: '',
         rating: Number,
-        date: Date
+        date: Date,
+        eatery: ''
     });
 
     const toggleReviewForm = () => {
@@ -62,6 +76,7 @@ function AddReview() {
         reviewFormData.date = new Date().toLocaleString();
         reviewFormData.id = userid;
         reviewFormData.name = username;
+        reviewFormData.eatery = eateryName;
 
 
         if (Object.keys(errors).length === 0) {

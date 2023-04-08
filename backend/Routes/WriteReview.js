@@ -19,7 +19,8 @@ router.post("/writereview", body('review', 'must be minimum 1 character').isLeng
             name: req.body.name,
             date: req.body.date,
             rating: req.body.rating,
-            review: req.body.review
+            review: req.body.review,
+            eatery: req.body.eatery
 
         })
         result.json({ success: true });
