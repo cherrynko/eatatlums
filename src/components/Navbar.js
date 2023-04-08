@@ -1,29 +1,40 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // import { Navigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import "./Navbar.css"
-
 
 
 const HandleLogout = () => {
   localStorage.removeItem('token');
-
 };
 
 function Navbar() {
   const [user, setUser] = useState('');
   const isLoggedIn = !!localStorage.getItem('token');
   const navigate = useNavigate();
+  const [name, setname] = useState('')
 
   let firstname = null
   // setUser(localStorage.getItem('token'));
-  if (isLoggedIn)
-  {
-     let token = JSON.parse(localStorage.getItem('token')); 
-    let firstname = token.name.split(" ")[0];
-    console.log(firstname, "hiii23");
-  }
+  // if (isLoggedIn)
+  // {
+  //   let token = JSON.parse(localStorage.getItem('token')); 
+  //   let firstname = token.name.split(" ")[0];
+  //   // setname(firstname);
+  //   console.log(firstname, "hiii23");
+  // }
+  useEffect(() => {
+    let token = JSON.parse(localStorage.getItem('token')); 
+  if (token) {
+      // setIsLoggedIn(true);
+      // extract user name from token and set it to userName state
+      // for example, if token contains {"username": "John"}, you can use
+      let name = token.name.split(" ")[0];
+      setname(name);
+    }
+  }, []);
+
  
 
   return (
@@ -60,8 +71,8 @@ function Navbar() {
 
       <ul className="navbar-nav">
         {isLoggedIn && (
-          <li className="navbar-nav" style={{ marginLeft: 'auto' }}>
-            <Link className="nav-link" to="/profile">Hey, {firstname}</Link>
+          <li className="navbar-nav" >
+            <Link className="nav-link" to="/profile">Hey, {name}! </Link>
           </li>
         )}
         </ul>
@@ -71,19 +82,20 @@ function Navbar() {
           <Link to="/" onClick={HandleLogout}>Logout</Link>
         </li>
         )}
-        
           
+          {isLoggedIn && (
+          <li className="nav-item dropdown">
+        <Link className="nav-link dropdown-toggle" to="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" data-bs-target="#" aria-expanded="false" onClick={(e) => { e.preventDefault(); }}>
+          Actions
+        </Link>
+        <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><Link className="dropdown-item" to="/vieweateries">view eateries</Link></li>
+          <li><Link className="dropdown-item" to="/viewfavourites">favourite meals</Link></li>
+          <li><Link className="dropdown-item" to="/orderhistory">order history </Link></li>
+        </ul>
+      </li>
+       )}
 
-        <li className="nav-item dropdown">
-          <Link className="nav-link dropdown-toggle" to="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
-          </Link>
-          <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><Link className="dropdown-item" to="/">Action</Link></li>
-            <li><Link className="dropdown-item" to="/">Another action</Link></li>
-            <li><Link className="dropdown-item" to="/">Something else here</Link></li>
-          </ul>
-        </li>
       </ul>
     </div>
   </div>
