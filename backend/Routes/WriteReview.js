@@ -21,14 +21,6 @@ router.post("/writereview", body('review', 'must be minimum 1 character').isLeng
             rating: req.body.rating,
             review: req.body.review
 
-            // {   req must go in like this
-            //     "id":24100207,
-            //     "name":"Eesha Ahsen",
-            //     "contact":"0324723112",
-            //     "email":"eeshaahsan80@gmail.com",
-            //     "password":"hihihihi"
-            // }
-
         })
         result.json({ success: true });
     } catch (error) {

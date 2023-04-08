@@ -3,7 +3,7 @@ import Eateries from "./screens/Eateries";
 import Orders from "./screens/Orders";
 import MyOrders from "./screens/MyOrders";
 import ContactUs from "./screens/ContactUs";
-import Reviews from "./screens/Reviews";
+import PDCReviews from "./screens/PDCReviews";
 import Menu1 from "./screens/Menu1";
 import EachEateryContactUs from "./screens/EachEateryContactUs";
 
@@ -18,10 +18,8 @@ function App() {
           <Route path="/orders" element={<Orders />} />
           <Route path="/myorders" element={<MyOrders />} />
           <Route path="/contactus" element={<ContactUs />} />
-        </Routes>
-        <Routes>
           <Route path="/menu1" element={<Menu1 />} />
-          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/pdcreviews" element={<PDCReviews />} />
           <Route path="/eacheaterycontactus" element={<EachEateryContactUs />} />
         </Routes>
       </div>

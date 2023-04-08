@@ -2,9 +2,10 @@ import React from 'react'
 import EachEateryNavbar from "../components/EachEateryNavbar";
 import AddReview from '../components/AddReview';
 import DisplayReviews from '../components/UserReviews';
+import './PDCReviews.css'
 
 
-export default function Reviews() {
+export default function PDCReviews() {
   return (
     <div>
       <EachEateryNavbar />
@@ -23,10 +24,6 @@ export default function Reviews() {
 
       <AddReview />
       <DisplayReviews />
-
-
-
-
 
     </div>
   )
