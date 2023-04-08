@@ -6,22 +6,12 @@ const ReviewSchema = new Schema({
     id:
     {
         type: mongoose.Schema.Types.ObjectId,
-        refPath: 'idModel'
-    },
-    idModel: {
-        type: Number,
-        required: true,
-        enum: ['User']
+        ref: 'User'
     },
     name:
     {
         type: mongoose.Schema.Types.ObjectId,
-        refPath: 'nameModel'
-    },
-    nameModel: {
-        type: String,
-        required: true,
-        enum: ['User']
+        refPath: 'User'
     },
 
     review:
