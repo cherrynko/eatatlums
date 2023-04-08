@@ -19,6 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api", require("./Routes/CreateUser"));
+app.use("/api", require("./Routes/WriteReview"))
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

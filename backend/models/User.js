@@ -1,16 +1,16 @@
 const mongoose = require("mongoose")
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const UserSchema = new Schema({
     id:
     {
         type: Number,
-        required:true
+        required: true
     },
     name:
     {
         type: String,
-        required:true
+        required: true
     },
     contact:
     {
@@ -19,14 +19,14 @@ const UserSchema = new Schema({
     },
     email:
     {
-        type:String,
-        required:true 
+        type: String,
+        required: true
         // this is because some masters grads may have alternate emails and ids
     },
     password:
     {
-        type:String,
-        required:true
+        type: String,
+        required: true
     }
 
 
