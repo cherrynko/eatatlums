@@ -5,13 +5,13 @@ const ReviewSchema = new Schema({
 
     id:
     {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: Number,
+        required: true
     },
     name:
     {
-        type: mongoose.Schema.Types.ObjectId,
-        refPath: 'User'
+        type: String,
+        required: true
     },
 
     review:
@@ -27,6 +27,12 @@ const ReviewSchema = new Schema({
     date:
     {
         type: Date,
+        required: true
+    },
+
+    eatery:
+    {
+        type: String,
         required: true
     }
 

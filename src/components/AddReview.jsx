@@ -3,56 +3,66 @@ import axios from 'axios';
 
 function AddReview() {
     const [showAddReview, setShowReviewForm] = useState(false);
-    const [reviewText, setReviewText] = useState('');
-    const [starRating, setStarRating] = useState(0);
+    // const [reviewText, setReviewText] = useState('');
+    // const [starRating, setStarRating] = useState(0);
     const BASE_URL = 'http://localhost:3001';
     const [errors, setErrors] = useState({});
+
+    const [reviewFormData, setReviewData] = useState({
+
+        name: '',
+        id: Number,
+        review: '',
+        rating: Number,
+        date: Date
+    });
 
     const toggleReviewForm = () => {
         setShowReviewForm(!showAddReview);
     };
 
     const handleReviewTextChange = (event) => {
-        setReviewText(event.target.value);
+        // setReviewText(event.target.value);
+        const { name, value } = event.target;
+        setReviewData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     };
 
     const handleStarRatingChange = (event) => {
-        setStarRating(parseInt(event.target.value));
+        // setStarRating(parseInt(event.target.value));
+        const { name, value } = event.target;
+        setReviewData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const errors = {};
 
-        if (!reviewText) {
+        if (!reviewFormData.review) {
             errors.name = "Review Text is required";
-        } else if (!starRating) {
+        } else if (!reviewFormData.rating) {
             errors.name = "Star Rating is required";
         }
 
-        const isLoggedIn = !!localStorage.getItem('token');
+        // const isLoggedIn = !!localStorage.getItem('token');
 
-        let username = null
-        let userid = null
+        let username = ''
+        let userid = ''
         // setUser(localStorage.getItem('token'));
-        if (isLoggedIn) {
-            let token = JSON.parse(localStorage.getItem('token'));
-            let username = token.name;
-            let userid = token.id;
-            console.log(username, userid, "submitted a review form");
+        // if (isLoggedIn) {
+        let token = JSON.parse(localStorage.getItem('token'));
+        username = token.name;
+        userid = token.id;
+        console.log(username, userid, "submitted a review form");
+        reviewFormData.date = new Date().toLocaleString();
+        reviewFormData.id = userid;
+        reviewFormData.name = username;
 
-        }
-
-
-        const currentTime = new Date().toLocaleString();
-        const reviewFormData = {
-
-            name: username,
-            id: userid,
-            review: reviewText,
-            rating: starRating,
-            date: currentTime
-        }
 
         if (Object.keys(errors).length === 0) {
             // Submit review form data to server
@@ -67,10 +77,8 @@ function AddReview() {
             setErrors(errors);
         }
 
-        console.log(`Submitted review: "${reviewText}" with ${starRating} stars`);
+        console.log(`"${username}" "${userid}" Submitted review: "${reviewFormData.review}" with ${reviewFormData.rating} stars`);
 
-
-        // Here you would typically send the data to a server or perform some other action with it
     };
 
     return (
@@ -79,13 +87,14 @@ function AddReview() {
             {showAddReview && (
                 <form onSubmit={handleSubmit}>
                     <textarea
+                        name="review"
                         placeholder="Write your review here"
-                        value={reviewText}
+                        value={reviewFormData.review}
                         onChange={handleReviewTextChange}
                     />
                     <div>
                         <span>Rating: </span>
-                        <select value={starRating} onChange={handleStarRatingChange}>
+                        <select name="rating" value={reviewFormData.rating} onChange={handleStarRatingChange}>
                             <option value="1">1 star</option>
                             <option value="2">2 stars</option>
                             <option value="3">3 stars</option>
