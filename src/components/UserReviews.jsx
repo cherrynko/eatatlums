@@ -22,9 +22,10 @@ const DisplayReviews = () => {
             <h1>Reviews:</h1>
             {reviews.map((review) => (
                 <div key={review._id}>
-                    <p>{review.review}</p>
-                    <p>{review.name}</p>
-                    <p>{review.date}</p>
+                    <p>Name: {review.name}</p>
+                    <p>Date: {review.date}</p>
+                    <p>Review Text: {review.review}</p>
+
                 </div>
             ))}
         </div>
