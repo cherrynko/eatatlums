@@ -23,14 +23,12 @@ const DisplayReviews = () => {
         <div>
             {reviews.map((review) => (
                 <div key={review._id}>
-                    <div className="review-container">
-                        <div className="name-rating">
-                            <p className="grey-text">Name: {review.name}</p>
-                            <RatingStars rating={review.rating} />
-                        </div>
-                        <p className="grey-text">Date: {review.date}</p>
-                        <p className="white-text">Review: {review.review}</p>
-                    </div>
+                    <p>Name: {review.name}</p>
+                    <p>Date: {review.date}</p>
+                    <p>Rating: {review.rating}</p>
+                    <p>Review: {review.review}</p>
+                    <p>Eatery: {review.eatery}</p>
+                    <hr />
                 </div>
             ))}
         </div>

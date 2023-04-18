@@ -1,0 +1,58 @@
+body {
+    background-color:dimgrey;
+}
+
+.addReview-container {
+    padding-left: 5%;
+    margin-top: 3%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.add-review-button {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-weight: bold;
+    font-size:200%;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.add-review-button:hover {
+    background-color:darkgrey;
+    color: #fff;
+}
+
+.addReview-container form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.addReview-container textarea {
+    display: inline-block;
+    width: 60%;
+    margin-right: 10px;
+}
+
+.addReview-container select {
+    display: inline-block;
+    width: 30%;
+}
+
+.review-form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-form-row select {
+    margin-right: 5px;
+}
+
+.review-form-row button {
+    margin-left: 5px;
+}

@@ -69,6 +69,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+-m
+for using symbols/icons:
+npm install --save @fortawesome/fontawesome-svg-core
+npm install --save @fortawesome/free-solid-svg-icons
+npm install --save @fortawesome/react-fontawesome
+
 
 -a 
 for running frontend:
