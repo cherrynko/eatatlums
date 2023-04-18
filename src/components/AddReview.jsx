@@ -49,6 +49,7 @@ function AddReview() {
     };
 
     const handleSubmit = async (event) => {
+        console.log("im inside handle submit")
         event.preventDefault();
         const errors = {};
 
@@ -62,8 +63,12 @@ function AddReview() {
         let userid = ''
 
         let token = JSON.parse(localStorage.getItem('token'));
+        if (JSON.parse(localStorage.getItem('token'))) {
+            console.log("kuch bhi ")
+        }
         username = token.name;
         userid = token.id;
+        console.log("lets see whats happening: ",userid, username)
         console.log(username, userid, "submitted a review form");
         reviewFormData.date = new Date().toLocaleString();
         reviewFormData.id = userid;

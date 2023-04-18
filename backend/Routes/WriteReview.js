@@ -7,6 +7,7 @@ const { body, validationResult } = require('express-validator');
 
 router.post("/writereview", body('review', 'must be minimum 1 character').isLength({ min: 2 }), async (req, result) => {
 
+    console.log("request", req.body)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return result.status(400).json({ errors: errors.array() });
