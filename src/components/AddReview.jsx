@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import "./AddReview.css"
 
 function getSubstring(str, start, end) {
     const startIndex = str.indexOf(start) + start.length;
@@ -92,31 +93,42 @@ function AddReview() {
     };
 
     return (
-        <div>
-            <button onClick={toggleReviewForm}>Add Review</button>
-            {showAddReview && (
-                <form onSubmit={handleSubmit}>
-                    <textarea
-                        name="review"
-                        placeholder="Write your review here"
-                        value={reviewFormData.review}
-                        onChange={handleReviewTextChange}
-                    />
-                    <div>
-                        <span>Rating: </span>
-                        <select name="rating" value={reviewFormData.rating} onChange={handleStarRatingChange}>
-                            <option value="1">1 star</option>
-                            <option value="2">2 stars</option>
-                            <option value="3">3 stars</option>
-                            <option value="4">4 stars</option>
-                            <option value="5">5 stars</option>
-                        </select>
-                    </div>
-                    <button type="submit">Submit</button>
-                </form>
-            )}
-        </div>
-    );
+  <div>
+    <div className="addReview-container">
+      <button onClick={toggleReviewForm} className="add-review-button">
+        + Add Review
+      </button>
+      {showAddReview && (
+        <form onSubmit={handleSubmit}>
+          <div className="review-form-row">
+            <textarea
+              name="review"
+              placeholder="Write your review here"
+              value={reviewFormData.review}
+              onChange={handleReviewTextChange}
+            />
+            <div className="review-form-row">
+              <span>Rating: </span>
+              <select
+                name="rating"
+                value={reviewFormData.rating}
+                onChange={handleStarRatingChange}
+              >
+                <option value="1">1 star</option>
+                <option value="2">2 stars</option>
+                <option value="3">3 stars</option>
+                <option value="4">4 stars</option>
+                <option value="5">5 stars</option>
+              </select>
+              <button type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      )}
+    </div>
+  </div>
+);
+
 }
 
 export default AddReview;

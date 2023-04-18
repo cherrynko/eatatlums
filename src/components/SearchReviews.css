@@ -1,0 +1,25 @@
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
+}
+
+.search-container input {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin-right: 5px;
+    flex: 1;
+}
+
+.search-container button {
+    background-color: transparent;
+    border: none;
+    order: -1;
+}
