@@ -12,12 +12,8 @@ function getSubstring(str, start, end) {
 function AddReview() {
     const location = useLocation();
     const path = location.pathname;
-    // console.log("Path:", path);
     const eateryName = getSubstring(path, '/', 'reviews')
-    // console.log("Eatery name:", eateryName);
     const [showAddReview, setShowReviewForm] = useState(false);
-    // const [reviewText, setReviewText] = useState('');
-    // const [starRating, setStarRating] = useState(0);
     const BASE_URL = 'http://localhost:3001';
     const [errors, setErrors] = useState({});
 
@@ -26,7 +22,7 @@ function AddReview() {
         name: '',
         id: Number,
         review: '',
-        rating: Number,
+        rating: 1,
         date: Date,
         eatery: ''
     });
@@ -45,7 +41,6 @@ function AddReview() {
     };
 
     const handleStarRatingChange = (event) => {
-        // setStarRating(parseInt(event.target.value));
         const { name, value } = event.target;
         setReviewData(prevState => ({
             ...prevState,
@@ -63,12 +58,9 @@ function AddReview() {
             errors.name = "Star Rating is required";
         }
 
-        // const isLoggedIn = !!localStorage.getItem('token');
-
         let username = ''
         let userid = ''
-        // setUser(localStorage.getItem('token'));
-        // if (isLoggedIn) {
+
         let token = JSON.parse(localStorage.getItem('token'));
         username = token.name;
         userid = token.id;
@@ -80,7 +72,6 @@ function AddReview() {
 
 
         if (Object.keys(errors).length === 0) {
-            // Submit review form data to server
             try {
                 const res = await axios.post(`${BASE_URL}/api/writereview`, reviewFormData);
                 console.log(res.data);
@@ -88,7 +79,6 @@ function AddReview() {
                 console.error(error);
             }
         } else {
-            // Display validation errors
             setErrors(errors);
         }
 

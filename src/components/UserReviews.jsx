@@ -24,8 +24,10 @@ const DisplayReviews = () => {
                 <div key={review._id}>
                     <p>Name: {review.name}</p>
                     <p>Date: {review.date}</p>
-                    <p>Review Text: {review.review}</p>
-
+                    <p>Rating: {review.rating}</p>
+                    <p>Review: {review.review}</p>
+                    <p>Eatery: {review.eatery}</p>
+                    <hr />
                 </div>
             ))}
         </div>

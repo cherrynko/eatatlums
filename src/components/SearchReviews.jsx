@@ -1,49 +1,37 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const SearchReviews = () => {
-    const [reviews, setReviews] = useState([]);
+function SearchBar() {
     const BASE_URL = 'http://localhost:3001';
+    const [query, setQuery] = useState('');
+    const [results, setResults] = useState([]);
 
-    const [searchTerm, setSearchTerm] = useState("");
-
-    const handleSearch = async (event) => {
-        event.preventDefault();
-        const response = await axios.get(`${BASE_URL}/getsearchreviews/${searchTerm}`);
-        setReviews(response.data);
+    const handleSearch = async () => {
+        console.log("Search Query sent to server: ", query);
+        try {
+            const response = await axios.get(`${BASE_URL}/api/search?q=${query}`);
+            setResults(response.data);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
         <div>
-            <h1>Reviews</h1>
-            <div className="search-container">
-                <form onSubmit={handleSearch}>
-                    <div className="input-container">
-                        <button type="submit" className="search-button">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Search_Icon.svg/1024px-Search_Icon.svg.png"></img>
-                        </button>
-                        <input
-                            type="text"
-                            placeholder="Search.."
-                            name="search"
-                            className="search-input"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                    </div>
-                </form>
-            </div>
-            <div className="review-list">
-                {reviews.map((review) => (
-                    <div key={review._id} className="review">
-                        <h2>{review.review}</h2>
-                        <p>{review.name}</p>
-                        <p>{review.date}</p>
-                    </div>
-                ))}
-            </div>
+            <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
+            <button onClick={handleSearch}>Search</button>
+            {results.map((result) => (
+                <div key={result.id}>
+                    <p>Name: {result.name}</p>
+                    <p>Date: {result.date}</p>
+                    <p>Rating: {result.rating}</p>
+                    <p>Review: {result.review}</p>
+                    <p>Eatery: {result.eatery}</p>
+                    <hr />
+                </div>
+            ))}
         </div>
     );
-};
+}
 
-export default SearchReviews;
+export default SearchBar;
