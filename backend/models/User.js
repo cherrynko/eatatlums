@@ -27,6 +27,11 @@ const UserSchema = new Schema({
     {
         type: String,
         required: true
+    },
+    deliveryStatus:
+    {
+        type: String,
+        required: true
     }
 
 

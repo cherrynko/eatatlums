@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import "./SearchReviews.css"
 
 function SearchBar() {
     const BASE_URL = 'http://localhost:3001';
@@ -18,8 +21,10 @@ function SearchBar() {
 
     return (
         <div>
-            <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
-            <button onClick={handleSearch}>Search</button>
+            <div className="search-container">
+                <input type="text" placeholder='Search...' value={query} onChange={(e) => setQuery(e.target.value)} />
+                <button onClick={handleSearch}><FontAwesomeIcon icon={faSearch} /></button>
+            </div>
             {results.map((result) => (
                 <div key={result.id}>
                     <p>Name: {result.name}</p>
