@@ -27,8 +27,11 @@ const UserSchema = new Schema({
     {
         type:String,
         required:true
+    },
+    reports:{
+        type: Number,
+        default:0
     }
-
 
 })
 

@@ -1,26 +1,35 @@
-// import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './screens/Login/Login';
+import Signup from './screens/Signup/Signup';
+import Home from './screens/Home/Home';
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar"
+import Eatery from './screens/Eateries/Eateries';
+const { Outlet } = require("react-router-dom")
 
-import Home from './screens/Home';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-import Login from './screens/Login';
-import Signup from './screens/Signup';
 
+
+const Protectedroutes= ()=>{
+  console.log(localStorage.getItem("auth_token"))
+  return (  localStorage.getItem("auth_token") ? <Outlet/> : <Login/>)
+}
 
 function App() {
   return (
     <Router>
-      <div>
+       <Navbar/>
         <Routes>
-          <Route exact path ="/" element = {<Home/>}/>
           <Route exact path ="/login" element = {<Login/>}/>
           <Route exact path ="/signup" element = {<Signup/>}/>
+          <Route exact path ="/eateries" element = {<Eatery/>}/>
+
+        {/* add protected Routes here */}
+
+        <Route element= {<Protectedroutes/>}> 
+          <Route exact path ="/" element = {<Home/>}/>
+        </Route>
         </Routes>
-      </div>
+
     </Router>
   );
 }
