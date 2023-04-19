@@ -30,7 +30,7 @@ function AddReview() {
 
     const toggleReviewForm = () => {
         setShowReviewForm(!showAddReview);
-        document.body.style.overflow = showAddReview ? 'auto' : 'hidden';
+        //document.body.style.overflow = showAddReview ? 'auto' : 'hidden';
     };
 
     const handleReviewTextChange = (event) => {
