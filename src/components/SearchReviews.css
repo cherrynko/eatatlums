@@ -2,12 +2,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 0.75%;
     background-color: #fff;
     border-radius: 10px;
     margin: 0 auto;
-    max-width: 600px;
+    max-width: 40%;
     width: 100%;
+    
 }
 
 .search-container input {
@@ -22,4 +23,48 @@
     background-color: transparent;
     border: none;
     order: -1;
+}
+
+.popup {
+  /* max-height: 80vh; */
+  overflow-y: scroll;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 60%;
+  
+  border-radius: 10px;
+}
+
+.search-review-container {
+    margin-top: 1.6%;
+    padding-left: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 120%;
+}
+
+.search-name-rating {
+    display: flex;
+    align-items: center;
+}
+
+.search-name-rating p:first-child {
+    margin-right: 2vh;
+}
+
+.search-grey-text {
+    color: #464d46;
+    margin-Top: 1%;
+    margin-Bottom: 0;
+}
+
+.search-white-text {
+    color: black;
+    margin-Top: 1%;
+    margin-Bottom: 2%;
 }

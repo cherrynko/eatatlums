@@ -28,13 +28,13 @@ const DisplayReviews = () => {
                             <p className="grey-text">Name: {review.name}</p>
                             <RatingStars rating={review.rating} />
                         </div>
-            <p className="grey-text">Date: {review.date}</p>
-            <p className="white-text">Review: {review.review}</p>
-          </div>
+                        <p className="grey-text">Date: {review.date}</p>
+                        <p className="white-text">Review: {review.review}</p>
+                    </div>
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
+    );
 };
 
 export default DisplayReviews;

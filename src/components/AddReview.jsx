@@ -19,17 +19,18 @@ function AddReview() {
     const [errors, setErrors] = useState({});
 
     const [reviewFormData, setReviewData] = useState({
+      name: '',
+      id: 0,
+      review: '',
+      rating: 1,
+      date: new Date(),
+      eatery: ''
+});
 
-        name: '',
-        id: Number,
-        review: '',
-        rating: 1,
-        date: Date,
-        eatery: ''
-    });
 
     const toggleReviewForm = () => {
         setShowReviewForm(!showAddReview);
+        document.body.style.overflow = showAddReview ? 'auto' : 'hidden';
     };
 
     const handleReviewTextChange = (event) => {
@@ -98,31 +99,44 @@ function AddReview() {
         + Add Review
       </button>
       {showAddReview && (
-        <form onSubmit={handleSubmit}>
-          <div className="review-form-row">
-            <textarea
-              name="review"
-              placeholder="Write your review here"
-              value={reviewFormData.review}
-              onChange={handleReviewTextChange}
-            />
-            <div className="review-form-row">
-              <span>Rating: </span>
-              <select
-                name="rating"
-                value={reviewFormData.rating}
-                onChange={handleStarRatingChange}
+        <div className='popupbg' style={{ position: "fixed", width: "100%", height: "100%", top: 0, left: 0 }}>
+        <div className='popup'>
+          <button
+                className="button1"
+                onClick={() => setShowReviewForm(!showAddReview)}
+                style={{ marginRight: '130px' }}
               >
-                <option value="1">1 star</option>
-                <option value="2">2 stars</option>
-                <option value="3">3 stars</option>
-                <option value="4">4 stars</option>
-                <option value="5">5 stars</option>
-              </select>
-              <button type="submit">Submit</button>
-            </div>
-          </div>
-        </form>
+                x 
+              </button>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <textarea 
+                  name="review"
+                  placeholder="Write your review here"
+                  value={reviewFormData.review}
+                  onChange={handleReviewTextChange}
+                  rows="20"
+                  cols="80"
+                />
+                <div className="review-form-row" style={{display: 'flex', justifyContent: 'space-around', marginTop: '1.5vh'}}>
+                  <select
+                    className='rating-button'
+                    name="rating"
+                    value={reviewFormData.rating}
+                    onChange={handleStarRatingChange}
+                  >
+                    <option value="1">1 star</option>
+                    <option value="2">2 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="5">5 stars</option>
+                  </select>
+                  <button className='button2' type="submit">Submit</button>
+                </div>
+              </div>
+            </form>
+      </div>
+      </div>
       )}
     </div>
   </div>
