@@ -2,7 +2,7 @@ body {
     background-image: url(backgroundPIC.jpg);
     background-size: cover;
     margin: 0;
-    height: 100vh;
+    height: 100%;
     position: relative;
     
 }
