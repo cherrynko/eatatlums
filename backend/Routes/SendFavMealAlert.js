@@ -11,7 +11,6 @@ router.post('/sendfavmealalert', async (req, res) => {
     const userId = req.body.id;
     try {
         const user = await FavouriteMeals.findOne({ id: userId }, { item: 1, contact: 1 });
-
         if (user) {
             const message = `Your favorite meal/s (${user.item.join(', ')}) is/are available.`;
             await client.messages.create({

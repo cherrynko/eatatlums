@@ -18,8 +18,6 @@ router.post("/reportrider", body('complaint', 'must be minimum 1 character').isL
             studentID: req.body.studentID,
             orderID: req.body.orderID,
             riderID: req.body.riderID,
-            complaint: req.body.complaint,
-            complaintNumber: 'false'
         })
         const complaintsCount = await Complaints.countDocuments({ riderID: req.body.riderID });
         if (complaintsCount >= 3) {

@@ -27,13 +27,11 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    deliveryStatus: // to check if the user would be able to take deliveries or not
+    banned: // to check if the user would be able to take deliveries or not
     {
-        type: String,
-        required: true
+        type: Number,
+        default: 0
     }
-
-
 })
 
 module.exports = mongoose.model('User', UserSchema);
