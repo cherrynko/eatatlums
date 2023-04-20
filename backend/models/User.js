@@ -21,14 +21,13 @@ const UserSchema = new Schema({
     {
         type: String,
         required: true
-        // this is because some masters grads may have alternate emails and ids
     },
     password:
     {
         type: String,
         required: true
     },
-    deliveryStatus:
+    deliveryStatus: // to check if the user would be able to take deliveries or not
     {
         type: String,
         required: true

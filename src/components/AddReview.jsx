@@ -69,7 +69,7 @@ function AddReview() {
         }
         username = token.name;
         userid = token.id;
-        console.log("lets see whats happening: ", userid, username)
+        console.log("lets see whats happening: ", userid, username);
         console.log(username, userid, "submitted a review form");
         reviewFormData.date = new Date().toLocaleString();
         reviewFormData.id = userid;

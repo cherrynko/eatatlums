@@ -17,6 +17,11 @@ const ComplaintsSchema = new Schema({
         type: Number,
         required: true
     },
+    eatery:
+    {
+        type: String,
+        required: true
+    },
     riderID:
     {
         type: Number,
